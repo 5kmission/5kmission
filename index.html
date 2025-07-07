@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SoulVault NFT Collection</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 </head>
 <body>
   <header>
@@ -13,11 +14,30 @@
   </header>
   <section class="nft-section">
     <div class="nft-card">
-      <img src="nft-sample.png" alt="NFT Example">
+      <img src="nft.png" alt="Featured NFT" style="width:300px; border-radius:15px; box-shadow:0 0 20px #ff00ff;">
       <h2>Featured NFT</h2>
       <p>Discover our exclusive NFT collection now available for purchase.</p>
-      <button>Connect Wallet</button>
+      <button onclick="connectWallet()">Connect Wallet</button>
+      <p id="walletAddress" style="margin-top: 10px; font-size: 14px;"></p>
     </div>
   </section>
+  <script>
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          await provider.send("eth_requestAccounts", []);
+          const signer = provider.getSigner();
+          const address = await signer.getAddress();
+          document.getElementById("walletAddress").innerText = "Connected Wallet: " + address;
+        } catch (error) {
+          console.error(error);
+          alert("Connection failed.");
+        }
+      } else {
+        alert("Please install MetaMask!");
+      }
+    }
+  </script>
 </body>
 </html>
