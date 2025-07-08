@@ -4,40 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoulVault NFT Collection</title>
-  <link rel="stylesheet" href="style.css">
+  <title>SoulVault Mystical NFT Vault</title>
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 </head>
 <body>
   <header>
-    <h1>Welcome to <span>SoulVault NFT Collection</span></h1>
+    <h1>Unlock the Secrets of <span>SoulVault Mystical Collection</span></h1>
   </header>
   <section class="nft-section">
     <div class="nft-card">
-<img src="nft.png" alt="NFT Example" width="300">
-      <h2>Featured NFT</h2>
-      <p>Discover our exclusive NFT collection now available for purchase.</p>
-      <button onclick="connectWallet()">Connect Wallet</button>
-      <p id="walletAddress" style="margin-top: 10px; font-size: 14px;"></p>
+      <img src="images/nft-mystic.png" alt="Mystical NFT">
+      <h2>Mystical Featured NFT</h2>
+      <p>Claim your hidden sigil from the vault, exclusively available now.</p>
+      <button onclick="connectWallet()">Unlock the Vault ✨</button>
+      <p id="walletAddress" class="wallet-info"></p>
+      <div class="trusted">
+        <img src="images/metamask.png" alt="MetaMask" title="MetaMask Verified">
+        <img src="images/opensea.png" alt="OpenSea" title="Listed on OpenSea">
+        <img src="images/etherscan.png" alt="Etherscan" title="Ethereum Verified">
+      </div>
     </div>
   </section>
-  <script>
-    async function connectWallet() {
-      if (window.ethereum) {
-        try {
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-          await provider.send("eth_requestAccounts", []);
-          const signer = provider.getSigner();
-          const address = await signer.getAddress();
-          document.getElementById("walletAddress").innerText = "Connected Wallet: " + address;
-        } catch (error) {
-          console.error(error);
-          alert("Connection failed.");
-        }
-      } else {
-        alert("Please install MetaMask!");
-      }
-    }
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
